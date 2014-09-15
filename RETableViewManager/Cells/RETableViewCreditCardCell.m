@@ -301,7 +301,7 @@ static inline RECreditCardType RECreditCardTypeFromNumber(NSString *creditCardNu
     
     self.userInteractionEnabled = _enabled;
     
-    self.textLabel.enabled = _enabled;
+//    self.textLabel.enabled = _enabled;
     self.creditCardField.enabled = _enabled;
     self.expirationDateField.enabled = _enabled;
     self.cvvField.enabled = _enabled;

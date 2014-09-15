@@ -108,7 +108,7 @@
 
     self.userInteractionEnabled = _enabled;
     
-    self.textLabel.enabled = _enabled;
+//    self.textLabel.enabled = _enabled;
     self.switchView.enabled = _enabled;
 }
 

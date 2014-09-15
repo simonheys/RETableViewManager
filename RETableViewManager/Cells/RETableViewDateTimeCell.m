@@ -187,7 +187,7 @@
     
     self.userInteractionEnabled = _enabled;
     
-    self.textLabel.enabled = _enabled;
+//    self.textLabel.enabled = _enabled;
     self.textField.enabled = _enabled;
     self.dateLabel.enabled = _enabled;
     self.placeholderLabel.enabled = _enabled;

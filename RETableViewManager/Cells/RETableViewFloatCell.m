@@ -99,7 +99,7 @@
     
     self.userInteractionEnabled = _enabled;
     
-    self.textLabel.enabled = _enabled;
+//    self.textLabel.enabled = _enabled;
     self.sliderView.enabled = _enabled;
 }
 

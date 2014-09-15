@@ -85,7 +85,7 @@
     
     self.userInteractionEnabled = _enabled;
     
-    self.textLabel.enabled = _enabled;
+//    self.textLabel.enabled = _enabled;
     self.datePicker.enabled = _enabled;
 }
 
