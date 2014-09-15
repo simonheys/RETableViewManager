@@ -223,7 +223,7 @@
         textField.returnKeyType = UIReturnKeyDefault;
     }
     [self updateActionBarNavigationControl];
-    [self.parentTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.rowIndex inSection:self.sectionIndex] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+//    [self.parentTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.rowIndex inSection:self.sectionIndex] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     return YES;
 }
 

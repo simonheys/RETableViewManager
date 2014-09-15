@@ -281,9 +281,9 @@
     NSIndexPath *indexPath = navigationControl.selectedSegmentIndex == 0 ? [self indexPathForPreviousResponder] : [self indexPathForNextResponder];
     if (indexPath) {
         RETableViewCell *cell = (RETableViewCell *)[self.parentTableView cellForRowAtIndexPath:indexPath];
-        if (!cell)
-            [self.parentTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
-        cell = (RETableViewCell *)[self.parentTableView cellForRowAtIndexPath:indexPath];
+//        if (!cell)
+//            [self.parentTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+//        cell = (RETableViewCell *)[self.parentTableView cellForRowAtIndexPath:indexPath];
         [self.responder resignFirstResponder];
         [cell.responder becomeFirstResponder];
     }
