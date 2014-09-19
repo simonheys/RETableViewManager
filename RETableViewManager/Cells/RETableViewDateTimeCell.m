@@ -158,7 +158,11 @@
             NSIndexPath *indexPath = [self.item.inlinePickerItem.indexPath copy];
             [self.section removeItemAtIndex:self.item.inlinePickerItem.indexPath.row];
             self.item.inlinePickerItem = nil;
-            [self.tableViewManager.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            __typeof (self) __weak weakSelf = self;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                __typeof (self) __strong strongSelf = weakSelf;
+                [strongSelf.tableViewManager.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            });
         }
     }
 }
