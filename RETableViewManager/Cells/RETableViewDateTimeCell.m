@@ -133,6 +133,21 @@
         [self.tableViewManager.delegate tableView:self.tableViewManager.tableView willLayoutCellSubviews:self forRowAtIndexPath:[self.tableViewManager.tableView indexPathForCell:self]];
 }
 
+- (void)closeOtherInlinePickers
+{
+    [self.tableViewManager.sections enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        RETableViewSection *section = (RETableViewSection *)obj;
+        [section.items enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ( [obj isKindOfClass:[REDateTimeItem class]] ) {
+                REDateTimeItem *item = (REDateTimeItem *)obj;
+                if ( ![self.item isEqual:item] && nil != item.inlinePickerItem ) {
+                    [item selectRowAnimated:YES];
+                }
+            }
+        }];
+    }];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
@@ -147,9 +162,12 @@
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
         self.dateLabel.textColor = [self performSelector:@selector(tintColor) withObject:nil];
 #endif
+        [self.tableViewManager.tableView beginUpdates];
+        [self closeOtherInlinePickers];
         self.item.inlinePickerItem = [REInlineDatePickerItem itemWithDateTimeItem:self.item];
         [self.section insertItem:self.item.inlinePickerItem atIndex:self.item.indexPath.row + 1];
         [self.tableViewManager.tableView insertRowsAtIndexPaths:@[self.item.inlinePickerItem.indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableViewManager.tableView endUpdates];
     } else {
         if (selected && self.item.inlineDatePicker && self.item.inlinePickerItem) {
             [self setSelected:NO animated:NO];
@@ -158,11 +176,7 @@
             NSIndexPath *indexPath = [self.item.inlinePickerItem.indexPath copy];
             [self.section removeItemAtIndex:self.item.inlinePickerItem.indexPath.row];
             self.item.inlinePickerItem = nil;
-            __typeof (self) __weak weakSelf = self;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                __typeof (self) __strong strongSelf = weakSelf;
-                [strongSelf.tableViewManager.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            });
+            [self.tableViewManager.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
     }
 }
