@@ -420,7 +420,7 @@
     if (section.headerView)
         return section.headerView.frame.size.height;
     else if (section.headerTitle.length) {
-        if (!UITableViewStyleGrouped) {
+        if (!UITableViewStyleGrouped == tableView.style) {
             return self.defaultTableViewSectionHeight;
         } else {
             CGFloat headerHeight = 0;
@@ -469,7 +469,7 @@
     if (section.footerView)
         return section.footerView.frame.size.height;
     else if (section.footerTitle.length) {
-        if (!UITableViewStyleGrouped) {
+        if (!UITableViewStyleGrouped == tableView.style) {
             return self.defaultTableViewSectionHeight;
         } else {
             CGFloat footerHeight = 0;
