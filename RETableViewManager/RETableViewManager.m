@@ -169,6 +169,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
+    if ( sectionIndex >= self.mutableSections.count ) {
+        return 0;
+    }
     return ((RETableViewSection *)[self.mutableSections objectAtIndex:sectionIndex]).items.count;
 }
 
@@ -420,7 +423,7 @@
     if (section.headerView)
         return section.headerView.frame.size.height;
     else if (section.headerTitle.length) {
-        if (!UITableViewStyleGrouped) {
+        if (!UITableViewStyleGrouped == tableView.style) {
             return self.defaultTableViewSectionHeight;
         } else {
             CGFloat headerHeight = 0;
@@ -469,7 +472,7 @@
     if (section.footerView)
         return section.footerView.frame.size.height;
     else if (section.footerTitle.length) {
-        if (!UITableViewStyleGrouped) {
+        if (!UITableViewStyleGrouped == tableView.style) {
             return self.defaultTableViewSectionHeight;
         } else {
             CGFloat footerHeight = 0;
@@ -527,6 +530,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)sectionIndex
 {
+    if ( sectionIndex >= self.mutableSections.count ) {
+        return 0;
+    }
     RETableViewSection *section = [self.mutableSections objectAtIndex:sectionIndex];
     if (section.headerView)
         return section.headerView.frame.size.height;
@@ -545,6 +551,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForFooterInSection:(NSInteger)sectionIndex
 {
+    if ( sectionIndex >= self.mutableSections.count ) {
+        return 0;
+    }
     RETableViewSection *section = [self.mutableSections objectAtIndex:sectionIndex];
     if (section.footerView)
         return section.footerView.frame.size.height;
