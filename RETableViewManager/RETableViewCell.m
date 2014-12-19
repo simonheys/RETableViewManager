@@ -43,6 +43,9 @@
 
 + (CGFloat)heightWithItem:(RETableViewItem *)item tableViewManager:(RETableViewManager *)tableViewManager
 {
+    if ( UITableViewAutomaticDimension == item.cellHeight )
+        return item.cellHeight;
+
     if ([item isKindOfClass:[RETableViewItem class]] && item.cellHeight > 0)
         return item.cellHeight;
     
